@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+    <head>
+        <title>[[#{employee.add.headline}]]</title>
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <div class="d-flex flex-wrap mb-4">
+                <h1 class="flex-grow-1">[[#{employee.add.headline}]]</h1>
+                <div>
+                    <a th:href="@{/employees}" class="btn btn-secondary">[[#{employee.add.back}]]</a>
+                </div>
+            </div>
+            <div th:replace="~{fragments/forms::globalErrors('employee')}" />
+            <form th:action="${requestUri}" method="post" novalidate="">
+                <div th:replace="~{fragments/forms::inputRow(object='employee', field='firstName', required=true)}" />
+                <div th:replace="~{fragments/forms::inputRow(object='employee', field='lastName')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='employee', field='email', required=true)}" />
+                <div th:replace="~{fragments/forms::inputRow(object='employee', field='profession', required=true)}" />
+                <div th:replace="~{fragments/forms::inputRow(object='employee', field='dataOfBirth', required=true, inputClass='js-datepicker')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='employee', field='phoneNumber', required=true)}" />
+                <input type="submit" th:value="#{employee.add.headline}" class="btn btn-primary mt-4" />
+            </form>
+        </div>
+    </body>
+</html>
